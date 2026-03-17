@@ -2,7 +2,7 @@ git### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-.idea
+.idea/
 lab5.iml
 
 ### Eclipse ###
