@@ -34,14 +34,13 @@ public class FileManager {
             return new ArrayList<>();
         }
 
-        // ⚠️ ВАЖНО: Используем BufferedReader, как требует задание!
         StringBuilder jsonContent = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 jsonContent.append(line); // Читаем файл построчно
             }
-        } // BufferedReader автоматически закрывается
+        }
 
         String json = jsonContent.toString();
 
