@@ -53,8 +53,6 @@ public class FileManager {
             // Создаем тип для List<Vehicle> (нужно для Gson)
             // TypeToken - специальный класс Gson для работы с generic типами
             Type listType = new TypeToken<ArrayList<Vehicle>>() {}.getType();
-
-            // ✨ МАГИЯ GSON: Превращает JSON строку в список объектов!
             List<Vehicle> vehicles = gson.fromJson(json, listType);
 
             // Проверяем, что все объекты имеют ID
@@ -67,14 +65,12 @@ public class FileManager {
             return vehicles != null ? vehicles : new ArrayList<>();
 
         } catch (JsonParseException e) {
-            // Если JSON кривой - бросаем понятную ошибку
             throw new IOException("Ошибка парсинга JSON: " + e.getMessage());
         }
     }
 
     /**
      * Сохраняет коллекцию в JSON файл.
-     * Использует FileOutputStream для записи (требование лабораторной).
      *
      * @param vehicles список транспортных средств
      * @throws IOException если ошибка записи
