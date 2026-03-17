@@ -2,6 +2,8 @@ git### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+.idea
+lab5.iml
 
 ### Eclipse ###
 .apt_generated
