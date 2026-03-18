@@ -5,25 +5,54 @@ import command.Command;
 import model.Vehicle;
 import model.VehicleFiller;
 
+/**
+ * Команда для добавления элемента, если его мощность больше максимальной.
+ * Сначала находит элемент с максимальной мощностью в коллекции,
+ * затем добавляет новый элемент только если его мощность превышает найденную.
+ */
 public class AddIfMaxCommand implements Command {
+
+    /** Менеджер коллекции для поиска максимума и добавления */
     private CollectionManager manager;
+
+    /** Заполнитель для ввода данных */
     private VehicleFiller filler;
 
+    /**
+     * Конструктор команды add_if_max.
+     *
+     * @param manager менеджер коллекции для операций с коллекцией
+     * @param filler заполнитель для ввода данных нового элемента
+     */
     public AddIfMaxCommand(CollectionManager manager, VehicleFiller filler) {
         this.manager = manager;
         this.filler = filler;
     }
 
+    /**
+     * @return "add_if_max"
+     */
     @Override
     public String getName() {
         return "add_if_max";
     }
 
+    /**
+     * @return "добавить элемент, если его мощность больше максимальной"
+     */
     @Override
     public String getDescription() {
         return "добавить элемент, если его мощность больше максимальной";
     }
 
+    /**
+     * Выполняет команду add_if_max.
+     * Если коллекция пуста, элемент добавляется автоматически.
+     * Иначе находит максимальный элемент, запрашивает новый элемент,
+     * сравнивает их мощности и добавляет новый только если он больше.
+     *
+     * @param args аргументы команды (не используются)
+     */
     @Override
     public void execute(String args) {
         Vehicle maxVehicle = manager.getMax();

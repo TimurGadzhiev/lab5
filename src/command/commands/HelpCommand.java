@@ -2,17 +2,38 @@ package command.commands;
 
 import command.Command;
 
+/**
+ * Команда для вывода справки по всем доступным командам.
+ * Выводит список всех команд с их описанием и примерами использования.
+ *
+ * @author Студент
+ * @version 1.0
+ */
 public class HelpCommand implements Command {
+    /**
+     * @return "help"
+     */
     @Override
     public String getName() {
         return "help";
     }
 
+    /**
+     * @return "вывести справку по доступным командам"
+     */
     @Override
     public String getDescription() {
         return "вывести справку по доступным командам";
     }
 
+    /**
+     * Выполняет команду help.
+     * Выводит в консоль список всех команд с их описанием,
+     * разделенный на основные и специальные команды.
+     * Также показывает доступные типы транспортных средств.
+     *
+     * @param args аргументы команды (не используются)
+     */
     @Override
     public void execute(String args) {
         System.out.println("Доступные команды:");

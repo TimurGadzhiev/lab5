@@ -8,13 +8,36 @@ import model.VehicleFiller;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс для выполнения команд, введенных пользователем.
+ * Хранит список всех доступных команд, ищет команду по имени и выполняет её.
+ * Работает в цикле: получает строку от пользователя, разбирает её на
+ * имя команды и аргументы, находит соответствующую команду в списке и выполняет.
+ */
 public class CommandExecutor {
+    /** Список всех доступных команд */
     private List<Command> commands;
+
+    /** Менеджер коллекции для работы с данными */
     private CollectionManager manager;
+
+    /** Заполнитель для ввода данных */
     private VehicleFiller filler;
+
+    /** Менеджер для работы с файлами */
     private FileManager fileManager;
+
+    /** Флаг работы программы (true - работает, false - завершается) */
     private boolean isRunning;
 
+    /**
+     * Конструктор, создающий исполнитель команд.
+     * Инициализирует список команд и создает все доступные команды.
+     *
+     * @param manager менеджер коллекции
+     * @param filler заполнитель для ввода данных
+     * @param fileManager менеджер для работы с файлами
+     */
     public CommandExecutor(CollectionManager manager, VehicleFiller filler, FileManager fileManager) {
         this.manager = manager;
         this.filler = filler;
@@ -24,6 +47,10 @@ public class CommandExecutor {
         initCommands();
     }
 
+    /**
+     * Инициализирует список всех доступных команд.
+     * Создает объекты всех команд и добавляет их в список.
+     */
     private void initCommands() {
         commands.add(new HelpCommand());
         commands.add(new InfoCommand(manager));
@@ -43,6 +70,12 @@ public class CommandExecutor {
         commands.add(new FilterLessThanTypeCommand(manager));
     }
 
+    /**
+     * Выполняет команду по строке ввода.
+     * Разбирает строку на имя команды и аргументы, находит команду в списке и выполняет.
+     *
+     * @param input строка ввода от пользователя
+     */
     public void executeCommand(String input) {
         if (input == null || input.isEmpty()) {
             return;
@@ -67,12 +100,29 @@ public class CommandExecutor {
         System.out.println("Неизвестная команда!");
 
     }
+
+    /**
+     * Возвращает список всех зарегистрированных команд.
+     *
+     * @return список команд
+     */
     public List<Command> getCommands() {
         return commands;
     }
+
+    /**
+     * Проверяет, работает ли программа.
+     *
+     * @return true, если программа работает, false если завершается
+     */
     public boolean isRunning() {
         return isRunning;
     }
+
+    /**
+     * Останавливает программу.
+     * Устанавливает флаг isRunning в false, что приводит к завершению главного цикла.
+     */
     public void stop() {
         this.isRunning = false;
     }

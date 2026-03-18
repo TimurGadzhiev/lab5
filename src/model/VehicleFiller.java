@@ -2,9 +2,20 @@ package model;
 
 import java.util.Scanner;
 
+/**
+ * Класс для заполнения объекта Vehicle данными из консоли.
+ * Обеспечивает интерактивный ввод с валидацией всех полей.
+ */
 public class VehicleFiller {
+    /** Сканер для чтения ввода пользователя */
     private Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Заполняет переданный объект Vehicle данными, введенными пользователем.
+     * Для каждого поля выполняется циклический ввод до получения корректного значения.
+     *
+     * @param vehicle объект Vehicle, который нужно заполнить
+     */
     public void fill(Vehicle vehicle) {
         String name;
         while (true) {
@@ -150,6 +161,10 @@ public class VehicleFiller {
         System.out.println("Транспортное средство успешно создано!");
     }
 
+    /**
+     * Закрывает сканер, освобождая связанные с ним ресурсы.
+     * Должен вызываться при завершении программы.
+     */
     public void close() {
         if (scanner != null) {
             scanner.close();

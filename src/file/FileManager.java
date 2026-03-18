@@ -11,10 +11,23 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
 
-
+/**
+ * Класс для работы с файловым вводом-выводом.
+ * Обеспечивает загрузку коллекции из JSON файла и сохранение в JSON файл.
+ */
 public class FileManager {
+    /** Объект Gson для работы с JSON (настроен на pretty printing и поддержку null) */
     private final Gson gson;
+
+    /** Имя файла для чтения/записи */
     private final String fileName;
+
+    /**
+     * Конструктор, создающий менеджер для работы с указанным файлом.
+     * Инициализирует Gson с необходимыми настройками.
+     *
+     * @param fileName имя файла для чтения/записи
+     */
     public FileManager(String fileName) {
         this.fileName = fileName;
         this.gson = new GsonBuilder().setPrettyPrinting().serializeNulls().registerTypeAdapter(Date.class, new DateAdapter()).create();
